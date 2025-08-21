@@ -15,7 +15,7 @@ public class ToDo extends Task {
                 throw new ToDoException("Hey, give me something to work with.");
             }
         } catch (ToDoException e) {
-            System.out.println("\tError: " + e.getMessage());
+            System.out.println("\t" + e.getMessage());
         }
     }
 

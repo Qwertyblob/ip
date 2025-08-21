@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Tony {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCommandException {
         Display.greeting();
         ListOfTasks list = new ListOfTasks();
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +30,11 @@ public class Tony {
                     list.unMark(words);
                     break;
                 default:
-                    System.out.println("Please input a valid command.");
+                    try {
+                        throw new InvalidCommandException("Hey man, I have no idea what you're saying");
+                    } catch (TonyException e) {
+                        System.out.println("\t" + e.getMessage());
+                    }
             }
             command = scanner.nextLine();
         }
