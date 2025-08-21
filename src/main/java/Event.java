@@ -23,7 +23,7 @@ public class Event extends Task {
                 throw new EventException("JARVIS, show them how it's done.\n\tevent <event> /from <start> /to <end>");
             }
         } catch (TonyException e) {
-            System.out.println("\t" + e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }

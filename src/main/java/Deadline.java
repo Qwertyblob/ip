@@ -18,7 +18,7 @@ public class Deadline extends Task {
                 throw new DeadlineException("JARVIS, show them how it's done.\n\tdeadline <task> /by <deadline>");
             }
         } catch (DeadlineException e) {
-            System.out.println("\t" + e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }
