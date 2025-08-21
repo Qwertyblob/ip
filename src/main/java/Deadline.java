@@ -12,6 +12,7 @@ public class Deadline extends Task {
             String[] d = words[1].split("/by", 2);
             Deadline deadline = new Deadline(d[0].trim(), d[1].trim());
             list.setTask(deadline);
+            new Display(deadline).addTask(list);
         } else {
             System.out.println("Invalid deadline task format.");
         }

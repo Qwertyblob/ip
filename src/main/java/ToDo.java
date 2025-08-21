@@ -9,6 +9,7 @@ public class ToDo extends Task {
         if (words.length > 1) {
             ToDo todo = new ToDo(words[1]);
             list.setTask(todo);
+            new Display(todo).addTask(list);
         } else {
             System.out.println("Task cannot be empty.");
         }

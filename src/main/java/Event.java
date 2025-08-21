@@ -17,6 +17,7 @@ public class Event extends Task {
             String to   = fromTo[1].trim();
             Event event = new Event(parts[0].trim(), from, to);
             list.setTask(event);
+            new Display(event).addTask(list);
         } else {
             System.out.println("Invalid event task format.");
         }

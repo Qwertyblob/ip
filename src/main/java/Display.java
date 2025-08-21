@@ -7,8 +7,11 @@ public class Display {
         this.message = message;
     }
 
-    public void showMessage() {
-        System.out.println(border + "\n\t added: " + this.message.toString() + "\n" + border);
+    public void addTask(ListOfTasks list) {
+        System.out.println(border);
+        System.out.println("\tGot it. I've added this task:\n\t  " + this.message);
+        System.out.println("\tNow you have " + list.getSize() + " tasks in the list.");
+        System.out.println(border);
     }
 
     public static void greeting() {
