@@ -5,13 +5,17 @@ public class ToDo extends Task {
     }
 
     public static void makeToDo(ListOfTasks list, String command) {
-        String[] words = command.trim().split("\\s+", 2);
-        if (words.length > 1) {
-            ToDo todo = new ToDo(words[1]);
-            list.setTask(todo);
-            new Display(todo).addTask(list);
-        } else {
-            System.out.println("Task cannot be empty.");
+        try {
+            String[] words = command.trim().split("\\s+", 2);
+            if (words.length > 1 && !words[1].isBlank()) {
+                ToDo todo = new ToDo(words[1].trim());
+                list.setTask(todo);
+                new Display(todo).addTask(list);
+            } else {
+                throw new ToDoException("Task cannot be empty.");
+            }
+        } catch (ToDoException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
