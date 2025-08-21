@@ -28,19 +28,19 @@ public class Display {
         System.out.println(border);
     }
 
-    public void showMark() {
-        this.message.markDone();
+    public void showMark(Task t) {
+        t.markDone();
         System.out.println(border);
         System.out.println("\tNice! I've marked this task as done:");
-        System.out.println("\t  " + this.message);
+        System.out.println("\t  " + t);
         System.out.println(border);
     }
 
-    public void showUnmark() {
-        this.message.markUndone();
+    public void showUnmark(Task t) {
+        t.markUndone();
         System.out.println(border);
         System.out.println("\tOK, I've marked this task as not done yet:");
-        System.out.println("\t  " + this.message);
+        System.out.println("\t  " + t);
         System.out.println(border);
     }
 

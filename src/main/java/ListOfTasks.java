@@ -11,6 +11,35 @@ public class ListOfTasks {
         return this.tasks;
     }
 
+    public void mark(String[] words) {
+        if (words.length == 2 && words[1].matches("\\d+")) {
+            int index = Integer.parseInt(words[1]);
+            if (index > 0 && index <= this.getSize()) {
+                Task t = this.getList().get(index - 1);
+                new Display(t).showMark(t);
+            } else {
+                System.out.println("Invalid task index!");
+            }
+        } else {
+            System.out.println("Invalid use of mark/unmark.");
+        }
+
+    }
+
+    public void unMark(String[] words) {
+        if (words.length == 2 && words[1].matches("\\d+")) {
+            int index = Integer.parseInt(words[1]);
+            if (index > 0 && index <= this.getSize()) {
+                Task t = this.getList().get(index - 1);
+                new Display(t).showUnmark(t);
+            } else {
+                System.out.println("Invalid task index!");
+            }
+        } else {
+            System.out.println("Invalid use of mark/unmark.");
+        }
+    }
+
     public int getSize() {
         return tasks.size();
     }

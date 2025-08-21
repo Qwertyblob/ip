@@ -15,51 +15,19 @@ public class Tony {
                     Display.showList(list);
                     break;
                 case "todo":
-                    if (words.length > 1) {
-                        ToDo todo = new ToDo(words[1]);
-                        list.setTask(todo);
-                    } else {
-                        System.out.println("Task cannot be empty.");
-                    }
+                    ToDo.makeToDo(list, command);
                     break;
                 case "deadline":
-                    if (words.length > 1 && command.contains("/by")) {
-                        String[] d = words[1].split("/by", 2);
-                        Deadline deadline = new Deadline(d[0].trim(), d[1].trim());
-                        list.setTask(deadline);
-                    } else {
-                        System.out.println("Invalid deadline task format.");
-                    }
+                    Deadline.makeDeadline(list, command);
                     break;
                 case "event":
-                    if (words.length > 1 && command.contains("/from") && command.contains("/to")) {
-                        String[] parts = words[1].split("/from", 2);
-                        String[] fromTo = parts[1].split("/to", 2);
-                        String from = fromTo[0].trim();
-                        String to   = fromTo[1].trim();
-                        Event event = new Event(parts[0].trim(), from, to);
-                        list.setTask(event);
-                    } else {
-                        System.out.println("Invalid event task format.");
-                    }
+                    Event.makeEvent(list, command);
                     break;
                 case "mark":
+                    list.mark(words);
+                    break;
                 case "unmark":
-                    if (words.length != 2 || !words[1].matches("\\d+")) {
-                        System.out.println("Invalid use of mark/unmark.");
-                        break;
-                    }
-                    int index = Integer.parseInt(words[1]);
-                    if (index < 1 || index > list.getSize()) {
-                        System.out.println("Invalid task index!");
-                        break;
-                    }
-                    Task t = list.getList().get(index - 1);
-                    if (keyword.equals("mark")) {
-                        new Display(t).showMark();
-                    } else {
-                        new Display(t).showUnmark();
-                    }
+                    list.unMark(words);
                     break;
                 default:
                     System.out.println("Please input a valid command.");
