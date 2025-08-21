@@ -9,22 +9,22 @@ public class Display {
 
     public void addTask(ListOfTasks list) {
         System.out.println(border);
-        System.out.println("\tGot it. I've added this task:\n\t  " + this.message);
+        System.out.println("\tAlright, just let one of my machines do it for you:\n\t  " + this.message);
         System.out.println("\tNow you have " + list.getSize() + " tasks in the list.");
         System.out.println(border);
     }
 
     public static void greeting() {
-        System.out.println(border + "\n\tHello! I'm Tony.\n\tWhat can I do for you?\n" + border);
+        System.out.println(border + "\n\tHey, it's Tony.\n\tGenius, billionaire, philanthropist… and apparently your personal assistant now.\n" + border);
     }
 
     public static void exit() {
-        System.out.println(border + "\n\tBye. Hope to see you again soon!\n" + border);
+        System.out.println(border + "\n\tI’m powering down. Don’t break anything while I’m gone.\n" + border);
     }
 
     public static void showList(ListOfTasks list) {
         System.out.println(border);
-        System.out.println("\tHere are the tasks in your list:");
+        System.out.println("\tJARVIS, show them their list of tasks:");
         for (int i = 1; i <= list.getSize(); i++) {
             System.out.println("\t" + i + ": " + list.getList().get(i - 1).toString());
         }
@@ -34,7 +34,7 @@ public class Display {
     public void showMark(Task t) {
         t.markDone();
         System.out.println(border);
-        System.out.println("\tNice! I've marked this task as done:");
+        System.out.println("\tDone. Look at you, being efficient.");
         System.out.println("\t  " + t);
         System.out.println(border);
     }
@@ -42,7 +42,7 @@ public class Display {
     public void showUnmark(Task t) {
         t.markUndone();
         System.out.println(border);
-        System.out.println("\tOK, I've marked this task as not done yet:");
+        System.out.println("\tUnmarked. Happens to the best of us.");
         System.out.println("\t  " + t);
         System.out.println(border);
     }
