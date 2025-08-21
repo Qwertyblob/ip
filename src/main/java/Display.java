@@ -1,6 +1,6 @@
 public class Display {
     private Task message;
-    private final String border = "=".repeat(80);
+    private final String border = "\t" + "=".repeat(80);
 
 
     public Display(Task message) {
@@ -8,11 +8,11 @@ public class Display {
     }
 
     public void showMessage() {
-        System.out.println(border + "\n" + this.message.toString() + "\n" + border);
+        System.out.println(border + "\n\t" + this.message.toString() + "\n" + border);
     }
 
     public static void greeting() {
-        new Display(new Task("Hello! I'm Tony.\nWhat can I do for you?")).showMessage();
+        new Display(new Task("Hello! I'm Tony.\n\tWhat can I do for you?")).showMessage();
     }
 
     public static void exit() {
