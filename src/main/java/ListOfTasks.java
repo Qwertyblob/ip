@@ -12,31 +12,38 @@ public class ListOfTasks {
     }
 
     public void mark(String[] words) {
-        if (words.length == 2 && words[1].matches("\\d+")) {
-            int index = Integer.parseInt(words[1]);
-            if (index > 0 && index <= this.getSize()) {
-                Task t = this.getList().get(index - 1);
-                new Display(t).showMark(t);
+        try {
+            if (words.length == 2 && words[1].matches("\\d+")) {
+                int index = Integer.parseInt(words[1]);
+                if (index > 0 && index <= this.getSize()) {
+                    Task t = this.getList().get(index - 1);
+                    new Display(t).showMark(t);
+                } else {
+                    throw new InvalidIndexException("No offence, but do you know how to count?");
+                }
             } else {
-                System.out.println("Invalid task index!");
+                throw new MarkException("JARVIS, show them how it's done.\n\tmark <number>");
             }
-        } else {
-            System.out.println("Invalid use of mark/unmark.");
+        } catch (TonyException e) {
+            System.out.println(e.getMessage());
         }
-
     }
 
     public void unMark(String[] words) {
-        if (words.length == 2 && words[1].matches("\\d+")) {
-            int index = Integer.parseInt(words[1]);
-            if (index > 0 && index <= this.getSize()) {
-                Task t = this.getList().get(index - 1);
-                new Display(t).showUnmark(t);
+        try {
+            if (words.length == 2 && words[1].matches("\\d+")) {
+                int index = Integer.parseInt(words[1]);
+                if (index > 0 && index <= this.getSize()) {
+                    Task t = this.getList().get(index - 1);
+                    new Display(t).showUnmark(t);
+                } else {
+                    throw new InvalidIndexException("No offence, but do you know how to count?");
+                }
             } else {
-                System.out.println("Invalid task index!");
+                throw new MarkException("JARVIS, show them how it's done.\n\tunmark <number>");
             }
-        } else {
-            System.out.println("Invalid use of mark/unmark.");
+        } catch (TonyException e) {
+            System.out.println(e.getMessage());
         }
     }
 
