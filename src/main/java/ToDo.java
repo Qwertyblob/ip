@@ -12,10 +12,10 @@ public class ToDo extends Task {
                 list.setTask(todo);
                 new Display(todo).addTask(list);
             } else {
-                throw new ToDoException("Task cannot be empty.");
+                throw new ToDoException("Hey, give me something to work with.");
             }
         } catch (ToDoException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("\tError: " + e.getMessage());
         }
     }
 

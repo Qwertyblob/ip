@@ -7,15 +7,20 @@ public class Deadline extends Task {
     }
 
     public static void makeDeadline(ListOfTasks list, String command) {
-        String[] words = command.trim().split("\\s+", 2);
-        if (words.length > 1 && command.contains("/by")) {
-            String[] d = words[1].split("/by", 2);
-            Deadline deadline = new Deadline(d[0].trim(), d[1].trim());
-            list.setTask(deadline);
-            new Display(deadline).addTask(list);
-        } else {
-            System.out.println("Invalid deadline task format.");
+        try {
+            String[] words = command.trim().split("\\s+", 2);
+            if (words.length > 1 && command.contains("/by")) {
+                String[] d = words[1].split("/by", 2);
+                Deadline deadline = new Deadline(d[0].trim(), d[1].trim());
+                list.setTask(deadline);
+                new Display(deadline).addTask(list);
+            } else {
+                throw new DeadlineException("JARVIS, show them how it's done.\n\tdeadline <task> /by <deadline>");
+            }
+        } catch (DeadlineException e) {
+            System.out.println("\tError: " + e.getMessage());
         }
+
     }
 
     public String toString() {
