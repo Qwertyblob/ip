@@ -47,4 +47,11 @@ public class Display {
         System.out.println(border);
     }
 
+    public void showDelete(Task t) {
+        System.out.println(border);
+        System.out.println("\tOverachieving might not be for everybody.");
+        System.out.println("\t  " + t);
+        System.out.println(border);
+    }
+
 }

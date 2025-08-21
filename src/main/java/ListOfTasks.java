@@ -47,6 +47,25 @@ public class ListOfTasks {
         }
     }
 
+    public void deleteTask(String[] words) {
+        try {
+            if (words.length == 2 && words[1].matches("\\d+")) {
+                int index = Integer.parseInt(words[1]);
+                if (index > 0 && index <= this.getSize()) {
+                    Task t = this.getList().get(index - 1);
+                    this.tasks.remove(index);
+                    new Display(t).showDelete(t);
+                } else {
+                    throw new InvalidIndexException("No offence, but do you know how to count?");
+                }
+            } else {
+                throw new DeleteException("JARVIS, show them how it's done.\n\tdelete <number>");
+            }
+        } catch (TonyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public int getSize() {
         return tasks.size();
     }

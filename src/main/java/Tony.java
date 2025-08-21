@@ -29,6 +29,9 @@ public class Tony {
                 case "unmark":
                     list.unMark(words);
                     break;
+                case "delete":
+                    list.deleteTask(words);
+                    break;
                 case "":
                     try {
                         throw new EmptyTaskException("Don't be shy, I won't bite.");
