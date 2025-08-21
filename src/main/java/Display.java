@@ -22,7 +22,7 @@ public class Display {
     public static void showList(ListOfTasks list) {
         System.out.println(border);
         for (int i = 1; i <= list.getSize(); i++) {
-            System.out.println("\t" + i + ": " + list.getList().get(i - 1));
+            System.out.println("\t" + i + ": " + list.getList().get(i - 1).toString());
         }
         System.out.println(border);
     }

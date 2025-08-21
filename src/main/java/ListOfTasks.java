@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class ListOfTasks {
-    private ArrayList<String> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
 
-    public void setTask(String task) {
+    public void setTask(Task task) {
         this.tasks.add(task);
     }
 
-    public ArrayList<String> getList() {
+    public ArrayList<Task> getList() {
         return this.tasks;
     }
 

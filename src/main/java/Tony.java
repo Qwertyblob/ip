@@ -12,7 +12,7 @@ public class Tony {
             if (task.toString().equals("list")) {
                 Display.showList(list);
             } else {
-                list.setTask(command);
+                list.setTask(task);
                 Display display = new Display(task);
                 display.showMessage();
             }
