@@ -5,7 +5,7 @@ public class Tony {
         Display.greeting();
         ListOfTasks list = new ListOfTasks();
         Scanner scanner = new Scanner(System.in);
-        String command = scanner.nextLine();
+        String command = scanner.nextLine().trim();
 
         while (!command.equals("bye")) {
             String[] words = command.trim().split("\\s+", 2);
