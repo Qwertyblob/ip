@@ -4,6 +4,8 @@ public class Tony {
     public static void main(String[] args) {
         Display.greeting();
         ListOfTasks list = new ListOfTasks();
+        SaveFile saveFile = new SaveFile("./data/tasks.txt");
+        saveFile.load(list);
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine().trim();
 
@@ -16,21 +18,27 @@ public class Tony {
                     break;
                 case "todo":
                     ToDo.makeToDo(list, command);
+                    saveFile.save(list);
                     break;
                 case "deadline":
                     Deadline.makeDeadline(list, command);
+                    saveFile.save(list);
                     break;
                 case "event":
                     Event.makeEvent(list, command);
+                    saveFile.save(list);
                     break;
                 case "mark":
                     list.mark(words);
+                    saveFile.save(list);
                     break;
                 case "unmark":
                     list.unMark(words);
+                    saveFile.save(list);
                     break;
                 case "delete":
                     list.deleteTask(words);
+                    saveFile.save(list);
                     break;
                 case "":
                     try {

@@ -53,7 +53,7 @@ public class ListOfTasks {
                 int index = Integer.parseInt(words[1]);
                 if (index > 0 && index <= this.getSize()) {
                     Task t = this.getList().get(index - 1);
-                    this.tasks.remove(index);
+                    this.tasks.remove(index - 1);
                     new Display(t).showDelete(t);
                 } else {
                     throw new InvalidIndexException("No offence, but do you know how to count?");
