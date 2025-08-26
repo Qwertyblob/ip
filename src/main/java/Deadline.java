@@ -25,6 +25,10 @@ public class Deadline extends Task {
 
     }
 
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
+
     public String toString() {
         return "[D]" + super.toString() + " (by: " + DateTimeManager.formatForDisplay(deadline) + ")";
     }

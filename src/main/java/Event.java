@@ -30,6 +30,14 @@ public class Event extends Task {
 
     }
 
+    public LocalDateTime getFrom() {
+        return this.from;
+    }
+
+    public LocalDateTime getTo() {
+        return this.to;
+    }
+
     public String toString() {
         return "[E]" + super.toString() + " (from: " + DateTimeManager.formatForDisplay(this.from)
                 + " to " + DateTimeManager.formatForDisplay(this.to) + ")";
