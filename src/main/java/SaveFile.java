@@ -45,22 +45,28 @@ public class SaveFile {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) continue;
+
                 String[] parts = line.split(" \\| ");
                 String type = parts[0];
                 boolean isDone = parts[1].equals("1");
                 Task task = null;
+
                 switch (type) {
                     case "T":
                         task = new ToDo(parts[2]);
                         break;
+
                     case "D":
-                        task = new Deadline(parts[2], parts[3].replace("by ", ""));
+                        // parts[3] contains the deadline string
+                        task = new Deadline(parts[2], parts[3]);
                         break;
+
                     case "E":
-                        String[] duration = parts[3].split("-");
-                        task = new Event(parts[2],
-                                duration[0].replace("from ", ""),
-                                duration[1].replace("to ", ""));
+                        // parts[3] contains the event duration: "from-to"
+                        String[] duration = parts[3].split(" - ", 2); // split only once
+                        String fromStr = duration[0].replace("from ", "").trim();
+                        String toStr = duration[1].replace("to ", "").trim();
+                        task = new Event(parts[2], fromStr, toStr);
                         break;
                 }
                 if (task != null) {

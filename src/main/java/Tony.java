@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Tony {
@@ -39,6 +43,9 @@ public class Tony {
                 case "delete":
                     list.deleteTask(words);
                     saveFile.save(list);
+                    break;
+                case "show":
+                    Display.showTasksOnDate(list, command);
                     break;
                 case "":
                     try {

@@ -1,7 +1,11 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Display {
     private Task message;
     private static final String border = "\t" + "=".repeat(80);
-
+    private static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public Display(Task message) {
         this.message = message;
@@ -51,6 +55,46 @@ public class Display {
         System.out.println(border);
         System.out.println("\tOverachieving might not be for everybody.");
         System.out.println("\t  " + t);
+        System.out.println(border);
+    }
+
+    public static void showTasksOnDate(ListOfTasks list, String command) {
+        LocalDate targetDate;
+        try {
+            String[] words = command.trim().split("\\s+", 2);
+            if (words.length != 2) {
+                throw new ShowTasksException("JARVIS, show them how it's done.\n\tUsage: show <dd-MM-yyyy>");
+            }
+            targetDate = LocalDate.parse(words[1], DATE_INPUT_FORMAT);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        boolean found = false;
+        System.out.println(border);
+        System.out.println("\tHere's the stuff happening on "
+                + targetDate.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ":");
+
+        for (Task task : list.getList()) {
+            if (task instanceof Deadline) {
+                LocalDateTime dt = ((Deadline) task).getDeadline();
+                if (dt.toLocalDate().equals(targetDate)) {
+                    System.out.println("\t  " + task);
+                    found = true;
+                }
+            } else if (task instanceof Event) {
+                LocalDateTime from = ((Event) task).getFrom();
+                LocalDateTime to = ((Event) task).getTo();
+                if (!from.toLocalDate().isAfter(targetDate) && !to.toLocalDate().isBefore(targetDate)) {
+                    System.out.println("\t  " + task);
+                    found = true;
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("\tYou're as busy as a rock");
+        }
         System.out.println(border);
     }
 
