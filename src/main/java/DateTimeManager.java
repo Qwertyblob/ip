@@ -5,7 +5,9 @@ import java.time.format.DateTimeParseException;
 
 public class DateTimeManager {
     private static final DateTimeFormatter DATE_ONLY = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private static final DateTimeFormatter DATE_TIME_12H = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mma");
+    private static final DateTimeFormatter DATE_TIME_12H = DateTimeFormatter.ofPattern("dd-MM-yyyy h:mma");
+    private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("d MMM yy");
+    private static final DateTimeFormatter DISPLAY_DATE_TIME = DateTimeFormatter.ofPattern("d MMM yy h:mma");
 
     public static LocalDateTime parse(String input) {
         try {
@@ -21,6 +23,14 @@ public class DateTimeManager {
             return dateTime.toLocalDate().format(DATE_ONLY);
         } else {
             return dateTime.format(DATE_TIME_12H);
+        }
+    }
+
+    public static String formatForDisplay(LocalDateTime dateTime) {
+        if (dateTime.toLocalTime().equals(java.time.LocalTime.MIDNIGHT)) {
+            return dateTime.format(DISPLAY_DATE);
+        } else {
+            return dateTime.format(DISPLAY_DATE_TIME);
         }
     }
 }

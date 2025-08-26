@@ -26,7 +26,7 @@ public class Deadline extends Task {
     }
 
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateTimeManager.format(deadline) + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeManager.formatForDisplay(deadline) + ")";
     }
 
     public String toDataFormat() {

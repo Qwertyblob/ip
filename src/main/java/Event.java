@@ -31,8 +31,8 @@ public class Event extends Task {
     }
 
     public String toString() {
-        return "[E]" + super.toString() + " (from: "
-                + DateTimeManager.format(this.from) + " to: " + DateTimeManager.format(this.to) + ")";
+        return "[E]" + super.toString() + " (from: " + DateTimeManager.formatForDisplay(this.from)
+                + " to " + DateTimeManager.formatForDisplay(this.to) + ")";
     }
 
     public String toDataFormat() {
