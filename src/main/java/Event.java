@@ -1,11 +1,13 @@
+import java.time.LocalDateTime;
+
 public class Event extends Task {
-    private String from;
-    private String to;
+    private LocalDateTime from;
+    private LocalDateTime to;
 
     public Event(String command, String from, String to) {
         super(command);
-        this.from = from;
-        this.to = to;
+        this.from = DateTimeManager.parse(from);
+        this.to = DateTimeManager.parse(to);
     }
 
     public static void makeEvent(ListOfTasks list, String command) {
@@ -29,10 +31,12 @@ public class Event extends Task {
     }
 
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
+        return "[E]" + super.toString() + " (from: "
+                + DateTimeManager.format(this.from) + " to: " + DateTimeManager.format(this.to) + ")";
     }
 
     public String toDataFormat() {
-        return "E | " + (doneStatus() ? 1 : 0) + " | " + this.command + " | " + this.from + "-" + this.to;
+        return "E | " + (doneStatus() ? 1 : 0) + " | "
+                + this.command + " | " + DateTimeManager.format(this.from) + " - " + DateTimeManager.format(this.to);
     }
 }
