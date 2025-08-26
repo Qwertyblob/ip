@@ -24,6 +24,10 @@ public class Deadline extends Task {
     }
 
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+    }
+
+    public String toDataFormat() {
+        return "D | " + (doneStatus() ? 1 : 0) + " | " + this.command + " | " + this.deadline;
     }
 }

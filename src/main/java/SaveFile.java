@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class SaveFile {
@@ -21,6 +23,17 @@ public class SaveFile {
             }
         } catch (IOException e) {
             System.out.println("Error creating save file: " + e.getMessage());
+        }
+    }
+
+    public void save(ListOfTasks list) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
+            for (Task task : list.getList()) {
+                writer.write(task.toDataFormat());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to save file: " + e.getMessage());
         }
     }
 }

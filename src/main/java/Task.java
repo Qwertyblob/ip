@@ -1,13 +1,13 @@
-public class Task {
-    private String command;
+public abstract class Task {
+    protected String command;
     private boolean done = false;
 
     public Task(String command) {
         this.command = command;
     }
 
-    public String doneStatus() {
-        return this.done ? "[X]" : "[ ]";
+    public boolean doneStatus() {
+        return this.done;
     }
 
     public void markDone() {
@@ -19,7 +19,8 @@ public class Task {
     }
 
     public String toString() {
-        return this.doneStatus() + " " + this.command;
+        return (this.doneStatus() ? "[X]" : "[ ]") + " " + this.command;
     }
 
+    public abstract String toDataFormat();
 }
