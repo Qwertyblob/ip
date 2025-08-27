@@ -19,7 +19,7 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+    public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         ToDo task = new ToDo(description);
         tasks.addTask(task);
         storage.save(tasks);

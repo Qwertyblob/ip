@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
                 throw new InvalidIndexException("No offence, but do you know how to count?");
             } else {
                 Task task = tasks.getTask(index);
-                tasks.markDone(index);
+                tasks.markUndone(index);
                 storage.save(tasks);
                 ui.showUnmark(task);
             }
