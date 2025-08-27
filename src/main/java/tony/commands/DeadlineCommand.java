@@ -10,6 +10,11 @@ import tony.ui.UI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a command to create a {@link Deadline} task.
+ * A deadline task requires both a task description and a deadline time,
+ * specified using the format <code>deadline &lt;task&gt; /by &lt;time&gt;</code>.
+ */
 public class DeadlineCommand extends Command {
 
     private final String description;
@@ -24,6 +29,18 @@ public class DeadlineCommand extends Command {
         this.by = parts[1].trim();
     }
 
+    /**
+     * Executes the {@code DeadlineCommand}.
+     * Parses the deadline string into a {@link LocalDateTime}.
+     * Creates and adds a {@link Deadline} task to the given {@link TaskList}.
+     * Saves the updated task list to persistent storage via {@link Storage}.
+     * Displays confirmation of the added task through the {@link UI}.
+     *
+     * @param tasks The {@link TaskList} to which the new task will be added.
+     * @param ui The {@link UI} instance for displaying feedback to the user.
+     * @param storage The {@link Storage} instance for saving tasks to file.
+     * @throws TonyException If the deadline cannot be parsed into a valid date-time format.
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
@@ -37,6 +54,5 @@ public class DeadlineCommand extends Command {
                     "Use: dd-MM-yyyy HH:mma (e.g. 12-09-2025 6:00PM).");
         }
     }
-
 }
 

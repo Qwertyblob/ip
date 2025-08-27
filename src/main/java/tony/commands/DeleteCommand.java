@@ -7,6 +7,10 @@ import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
+/**
+ * Represents a command to delete a {@link Task} from the task list.
+ * The user specifies the task to delete by its 1-based index in the list.
+ */
 public class DeleteCommand extends Command {
     private final int index;
 
@@ -18,6 +22,18 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Executes the {@code DeleteCommand}.
+     * Checks that the index is within bounds of the {@link TaskList}.
+     * Deletes the task at the given index.
+     * Saves the updated task list to persistent storage via {@link Storage}.
+     * Displays confirmation of the deleted task through the {@link UI}.
+     *
+     * @param tasks The {@link TaskList} from which the task will be deleted.
+     * @param ui The {@link UI} instance for displaying feedback to the user.
+     * @param storage The {@link Storage} instance for saving tasks to file.
+     * @throws TonyException If the index is invalid (not within list bounds).
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {

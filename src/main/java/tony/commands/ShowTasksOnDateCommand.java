@@ -1,6 +1,5 @@
 package tony.commands;
 
-import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Deadline;
@@ -12,6 +11,11 @@ import tony.ui.UI;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Represents a command to show list of tasks from the task list
+ * that lie on a specified date by the user.
+ * The user specifies the tasks to show using the format <code>dd-MM-yyyy</code>.
+ */
 public class ShowTasksOnDateCommand extends Command {
     private final LocalDateTime targetDate;
 
@@ -19,8 +23,17 @@ public class ShowTasksOnDateCommand extends Command {
         this.targetDate = DateTimeManager.parse(targetDate);
     }
 
+    /**
+     * Executes the {@code ShowTasksOnDateCommand}.
+     * Goes through the {@link TaskList} to find tasks that lie on the date specified by the user.
+     * Displays tasks that lie on the date specified by the user through the {@link UI}.
+     *
+     * @param tasks The {@link TaskList} from which the task will be marked.
+     * @param ui The {@link UI} instance for displaying feedback to the user.
+     * @param storage The {@link Storage} instance for saving tasks to file.
+     */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+    public void execute(TaskList tasks, UI ui, Storage storage) {
         ArrayList<Task> currTasks = new ArrayList<>();
         boolean found = false;
         for (Task task : tasks.getList()) {
@@ -35,14 +48,10 @@ public class ShowTasksOnDateCommand extends Command {
                 LocalDateTime to = ((Event) task).getTo();
                 if (!from.isAfter(targetDate) && !to.isBefore(targetDate)) {
                     found = true;
-                    currTasks.add(task);                }
+                    currTasks.add(task);
+                }
             }
         }
         ui.showTasksOnDate(currTasks, found);
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

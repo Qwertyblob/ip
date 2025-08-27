@@ -11,6 +11,11 @@ import tony.ui.UI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a command to create a {@link Event} task.
+ * An event task requires both a task description, a "from" time and a "to" time
+ * specified using the format <code>event &lt;task&gt; /from &lt;time&gt; /to &lt;time&gt;</code>.
+ */
 public class EventCommand extends Command {
     private final String description;
     private final String from;
@@ -28,6 +33,18 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * Executes the {@code EventCommand}.
+     * Parses the event string into a {@link LocalDateTime}.
+     * Creates and adds a {@link Event} task to the given {@link TaskList}.
+     * Saves the updated task list to persistent storage via {@link Storage}.
+     * Displays confirmation of the added task through the {@link UI}.
+     *
+     * @param tasks The {@link TaskList} to which the new task will be added.
+     * @param ui The {@link UI} instance for displaying feedback to the user.
+     * @param storage The {@link Storage} instance for saving tasks to file.
+     * @throws TonyException If the "from" or "to" time cannot be parsed into a valid date-time format.
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
