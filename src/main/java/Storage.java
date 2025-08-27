@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
-public class SaveFile {
+public class Storage {
 
     private final File saveFile;
 
-    public SaveFile(String saveFilePath) {
+    public Storage(String saveFilePath) {
         this.saveFile = new File(saveFilePath);
         createIfNotExists();
     }
@@ -28,7 +29,7 @@ public class SaveFile {
         }
     }
 
-    public void save(ListOfTasks list) {
+    public void save(TaskList list) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
             for (Task task : list.getList()) {
                 writer.write(task.toDataFormat());
@@ -39,7 +40,7 @@ public class SaveFile {
         }
     }
 
-    public void load(ListOfTasks list) {
+    public void load(TaskList list) {
         try (BufferedReader reader = new BufferedReader(new FileReader(saveFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -58,7 +59,7 @@ public class SaveFile {
 
                     case "D":
                         // parts[3] contains the deadline string
-                        task = new Deadline(parts[2], parts[3]);
+                        task = new Deadline(parts[2], DateTimeManager.parse(parts[3]));
                         break;
 
                     case "E":
@@ -66,12 +67,12 @@ public class SaveFile {
                         String[] duration = parts[3].split(" - ", 2); // split only once
                         String fromStr = duration[0].replace("from ", "").trim();
                         String toStr = duration[1].replace("to ", "").trim();
-                        task = new Event(parts[2], fromStr, toStr);
+                        task = new Event(parts[2], DateTimeManager.parse(fromStr), DateTimeManager.parse(toStr));
                         break;
                 }
                 if (task != null) {
                     if (isDone) task.markDone();
-                    list.setTask(task);
+                    list.addTask(task);
                 }
             }
         } catch (IOException e) {
