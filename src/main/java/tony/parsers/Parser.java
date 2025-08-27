@@ -4,8 +4,17 @@ import tony.commands.*;
 import tony.exceptions.InvalidCommandException;
 import tony.exceptions.TonyException;
 
+/**
+ * Processes the user input and decides which command to execute.
+ */
 public class Parser {
 
+    /**
+     * Processes the command string and decides which command to execute.
+     * @param input The command given by the user.
+     * @return The {@link Command} that corresponds to the input.
+     * @throws TonyException If command does not exist in the given list of commands.
+     */
     public static Command parse(String input) throws TonyException {
         String[] parts = input.trim().split(" ", 2);
         String keyword = parts[0];
