@@ -1,14 +1,10 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Tony {
     public static void main(String[] args) {
         Display.greeting();
-        ListOfTasks list = new ListOfTasks();
-        SaveFile saveFile = new SaveFile("./data/tasks.txt");
+        TaskList list = new TaskList();
+        Storage saveFile = new Storage("./data/tasks.txt");
         saveFile.load(list);
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine().trim();

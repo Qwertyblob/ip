@@ -11,7 +11,7 @@ public class Display {
         this.message = message;
     }
 
-    public void addTask(ListOfTasks list) {
+    public void addTask(TaskList list) {
         System.out.println(border);
         System.out.println("\tAlright, just let one of my machines do it for you:\n\t  " + this.message);
         System.out.println("\tNow you have " + list.getSize() + " tasks in the list.");
@@ -26,7 +26,7 @@ public class Display {
         System.out.println(border + "\n\tI’m powering down. Don’t break anything while I’m gone.\n" + border);
     }
 
-    public static void showList(ListOfTasks list) {
+    public static void showList(TaskList list) {
         System.out.println(border);
         System.out.println("\tJARVIS, show them their list of tasks:");
         for (int i = 1; i <= list.getSize(); i++) {
@@ -58,7 +58,7 @@ public class Display {
         System.out.println(border);
     }
 
-    public static void showTasksOnDate(ListOfTasks list, String command) {
+    public static void showTasksOnDate(TaskList list, String command) {
         LocalDate targetDate;
         try {
             String[] words = command.trim().split("\\s+", 2);

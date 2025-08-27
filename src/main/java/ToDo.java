@@ -4,7 +4,7 @@ public class ToDo extends Task {
         super(command);
     }
 
-    public static void makeToDo(ListOfTasks list, String command) {
+    public static void makeToDo(TaskList list, String command) {
         try {
             String[] words = command.trim().split("\\s+", 2);
             if (words.length > 1) {

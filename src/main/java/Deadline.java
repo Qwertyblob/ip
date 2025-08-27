@@ -8,7 +8,7 @@ public class Deadline extends Task {
         this.deadline = DateTimeManager.parse(deadline);
     }
 
-    public static void makeDeadline(ListOfTasks list, String command) {
+    public static void makeDeadline(TaskList list, String command) {
         try {
             String[] words = command.trim().split("\\s+", 2);
             if (words.length > 1 && command.contains("/by")) {

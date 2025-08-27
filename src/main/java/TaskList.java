@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ListOfTasks {
+public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
 
     public void setTask(Task task) {

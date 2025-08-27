@@ -5,11 +5,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SaveFile {
+public class Storage {
 
     private final File saveFile;
 
-    public SaveFile(String saveFilePath) {
+    public Storage(String saveFilePath) {
         this.saveFile = new File(saveFilePath);
         createIfNotExists();
     }
@@ -28,7 +28,7 @@ public class SaveFile {
         }
     }
 
-    public void save(ListOfTasks list) {
+    public void save(TaskList list) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
             for (Task task : list.getList()) {
                 writer.write(task.toDataFormat());
@@ -39,7 +39,7 @@ public class SaveFile {
         }
     }
 
-    public void load(ListOfTasks list) {
+    public void load(TaskList list) {
         try (BufferedReader reader = new BufferedReader(new FileReader(saveFile))) {
             String line;
             while ((line = reader.readLine()) != null) {

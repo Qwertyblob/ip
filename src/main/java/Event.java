@@ -10,7 +10,7 @@ public class Event extends Task {
         this.to = DateTimeManager.parse(to);
     }
 
-    public static void makeEvent(ListOfTasks list, String command) {
+    public static void makeEvent(TaskList list, String command) {
         try {
             String[] words = command.trim().split("\\s+", 2);
             if (words.length > 1 && command.contains("/from") && command.contains("/to")) {
