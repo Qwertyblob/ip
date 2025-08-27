@@ -69,13 +69,26 @@ public class UI {
         System.out.println(border);
     }
 
-    public void showTasksOnDate(ArrayList<Task> tasks, boolean found) {
+    public void showTasksOnDate(ArrayList<Task> tasks, boolean isFound) {
         System.out.println(border);
-        if (!found) {
+        if (!isFound) {
             System.out.println("\tYou're as busy as a rock");
         } else {
             for (Task task : tasks) {
                 System.out.println("\t  " + task);
+            }
+        }
+        System.out.println(border);
+    }
+
+    public void showFound(ArrayList<Task> tasks, String keyword) {
+        System.out.println(border);
+        if (tasks.isEmpty()) {
+            System.out.println("\tWell, I tried my best.");
+        } else {
+            System.out.println("\tThat didn't take long.");
+            for (int i = 1; i <= tasks.size(); i++) {
+                System.out.println("\t" + i + ": " + tasks.get(i - 1).toString());
             }
         }
         System.out.println(border);

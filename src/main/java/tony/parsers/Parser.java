@@ -20,6 +20,7 @@ public class Parser {
             case "mark": return new MarkCommand(args);
             case "unmark": return new UnmarkCommand(args);
             case "show": return new ShowTasksOnDateCommand(args);
+            case "find": return new FindCommand(args);
             case "bye": return new ExitCommand();
             default: throw new InvalidCommandException("Hey man, I don't know what you're saying.");
         }
