@@ -1,4 +1,7 @@
-package PACKAGE_NAME;
+public class ListCommand extends Command {
 
-public class ListCommand {
+    @Override
+    void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+        ui.showList(tasks);
+    }
 }

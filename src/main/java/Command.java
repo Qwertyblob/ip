@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
+public abstract class Command {
 
-public class Command {
+    abstract void execute(TaskList tasks, UI ui, Storage storage) throws TonyException;
+
+    boolean isExit() {
+        return false;
+    }
+
 }
