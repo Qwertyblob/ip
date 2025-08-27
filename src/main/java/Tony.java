@@ -1,64 +1,32 @@
-import java.util.Scanner;
-
 public class Tony {
-    public static void main(String[] args) {
-        Display.greeting();
-        TaskList list = new TaskList();
-        Storage saveFile = new Storage("./data/tasks.txt");
-        saveFile.load(list);
-        Scanner scanner = new Scanner(System.in);
-        String command = scanner.nextLine().trim();
+    Storage storage;
+    TaskList tasks;
+    UI ui;
 
-        while (!command.equals("bye")) {
-            String[] words = command.trim().split("\\s+", 2);
-            String keyword = words[0];
-            switch (keyword) {
-                case "list":
-                    Display.showList(list);
-                    break;
-                case "todo":
-                    ToDo.makeToDo(list, command);
-                    saveFile.save(list);
-                    break;
-                case "deadline":
-                    Deadline.makeDeadline(list, command);
-                    saveFile.save(list);
-                    break;
-                case "event":
-                    Event.makeEvent(list, command);
-                    saveFile.save(list);
-                    break;
-                case "mark":
-                    list.mark(words);
-                    saveFile.save(list);
-                    break;
-                case "unmark":
-                    list.unMark(words);
-                    saveFile.save(list);
-                    break;
-                case "delete":
-                    list.deleteTask(words);
-                    saveFile.save(list);
-                    break;
-                case "show":
-                    Display.showTasksOnDate(list, command);
-                    break;
-                case "":
-                    try {
-                        throw new EmptyTaskException("Don't be shy, I won't bite.");
-                    } catch (EmptyTaskException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                default:
-                    try {
-                        throw new InvalidCommandException("Hey man, I have no idea what you're saying");
-                    } catch (InvalidCommandException e) {
-                        System.out.println(e.getMessage());
-                    }
+    public Tony() {
+        this.storage = new Storage("./data/tasks.txt");
+        this.tasks = new TaskList();
+        this.ui = new UI();
+    }
+
+    void run() {
+        this.ui.greeting();
+        this.storage.load(tasks);
+        boolean isExit = false;
+        while (!isExit) {
+            String command = this.ui.readCommand();
+            try {
+                Command c = Parser.parse(command);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (TonyException e) {
+                this.ui.showError(e.getMessage());
             }
-            command = scanner.nextLine();
         }
-        Display.exit();
+        this.ui.exit();
+    }
+
+    public static void main(String[] args) {
+        new Tony().run();
     }
 }
