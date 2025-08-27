@@ -54,29 +54,23 @@ public class Storage {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) continue;
-
                 String[] parts = line.split(" \\| ");
                 String type = parts[0];
                 boolean isDone = parts[1].equals("1");
                 Task task = null;
-
                 switch (type) {
-                    case "T":
-                        task = new ToDo(parts[2]);
-                        break;
-
-                    case "D":
-                        // parts[3] contains the deadline string
-                        task = new Deadline(parts[2], DateTimeManager.parse(parts[3]));
-                        break;
-
-                    case "E":
-                        // parts[3] contains the event duration: "from-to"
-                        String[] duration = parts[3].split(" - ", 2); // split only once
-                        String fromStr = duration[0].replace("from ", "").trim();
-                        String toStr = duration[1].replace("to ", "").trim();
-                        task = new Event(parts[2], DateTimeManager.parse(fromStr), DateTimeManager.parse(toStr));
-                        break;
+                case "T":
+                    task = new ToDo(parts[2]);
+                    break;
+                case "D":
+                    task = new Deadline(parts[2], DateTimeManager.parse(parts[3]));
+                    break;
+                case "E":
+                    String[] duration = parts[3].split(" - ", 2); // split only once
+                    String fromStr = duration[0].replace("from ", "").trim();
+                    String toStr = duration[1].replace("to ", "").trim();
+                    task = new Event(parts[2], DateTimeManager.parse(fromStr), DateTimeManager.parse(toStr));
+                    break;
                 }
                 if (task != null) {
                     if (isDone) task.markDone();

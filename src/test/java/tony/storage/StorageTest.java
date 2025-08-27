@@ -48,7 +48,7 @@ public class StorageTest {
         assertEquals(1, loadedList.getSize());
         Task loaded = loadedList.getTask(1);
         assertTrue(loaded.doneStatus());
-        assertTrue(loaded instanceof Deadline);
+        assertInstanceOf(Deadline.class, loaded);
         assertEquals("[D][X] Submit report (by: 30 Aug 25 11:59PM)", loaded.toString());
     }
 
@@ -64,7 +64,7 @@ public class StorageTest {
         storage.load(loadedList);
         assertEquals(1, loadedList.getSize());
         Task loaded = loadedList.getTask(1);
-        assertTrue(loaded instanceof Event);
+        assertInstanceOf(Event.class, loaded);
         assertEquals("[E][ ] Project meeting (from: 28 Aug 25 10:00AM to 28 Aug 25 12:00PM)", loaded.toString());
     }
 }

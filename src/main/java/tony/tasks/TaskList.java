@@ -3,7 +3,7 @@ package tony.tasks;
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public Task getTask(int index) {
         return tasks.get(index - 1);
