@@ -4,6 +4,10 @@ import tony.parsers.DateTimeManager;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an event task with a description, a start date/time and an end date/time.
+ * Inherits common task behavior from {@link Task}.
+ */
 public class Event extends Task {
     private final LocalDateTime from;
     private final LocalDateTime to;
@@ -28,7 +32,7 @@ public class Event extends Task {
     }
 
     public String toDataFormat() {
-        return "E | " + (doneStatus() ? 1 : 0) + " | "
+        return "E | " + (isDone() ? 1 : 0) + " | "
                 + this.command + " | " + DateTimeManager.format(this.from) + " - " + DateTimeManager.format(this.to);
     }
 }

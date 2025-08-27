@@ -1,5 +1,10 @@
 package tony.tasks;
 
+import tony.storage.Storage;
+
+/**
+ * Represents a task.
+ */
 public abstract class Task {
     protected String command;
     private boolean done = false;
@@ -8,7 +13,7 @@ public abstract class Task {
         this.command = command;
     }
 
-    public boolean doneStatus() {
+    public boolean isDone() {
         return this.done;
     }
 
@@ -21,8 +26,12 @@ public abstract class Task {
     }
 
     public String toString() {
-        return (this.doneStatus() ? "[X]" : "[ ]") + " " + this.command;
+        return (this.isDone() ? "[X]" : "[ ]") + " " + this.command;
     }
 
+    /**
+     * Modifies the task to a format to be saved in {@link Storage}.
+     * @return The task formatted to a {@link String}.
+     */
     public abstract String toDataFormat();
 }

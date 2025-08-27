@@ -32,7 +32,7 @@ public class StorageTest {
         storage.load(loadedList);
         assertEquals(1, loadedList.getSize());
         assertEquals("[T][ ] Buy milk", loadedList.getTask(1).toString());
-        assertFalse(loadedList.getTask(1).doneStatus());
+        assertFalse(loadedList.getTask(1).isDone());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class StorageTest {
         storage.load(loadedList);
         assertEquals(1, loadedList.getSize());
         Task loaded = loadedList.getTask(1);
-        assertTrue(loaded.doneStatus());
+        assertTrue(loaded.isDone());
         assertTrue(loaded instanceof Deadline);
         assertEquals("[D][X] Submit report (by: 30 Aug 25 11:59PM)", loaded.toString());
     }

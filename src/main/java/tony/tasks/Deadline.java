@@ -4,6 +4,10 @@ import tony.parsers.DateTimeManager;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a deadline task with a description and a due date/time.
+ * Inherits common task behavior from {@link Task}.
+ */
 public class Deadline extends Task {
     private final LocalDateTime deadline;
 
@@ -21,6 +25,6 @@ public class Deadline extends Task {
     }
 
     public String toDataFormat() {
-        return "D | " + (doneStatus() ? 1 : 0) + " | " + this.command + " | " + DateTimeManager.format(deadline);
+        return "D | " + (isDone() ? 1 : 0) + " | " + this.command + " | " + DateTimeManager.format(deadline);
     }
 }

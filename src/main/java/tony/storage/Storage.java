@@ -14,6 +14,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Handles saving and loading of tasks to and from a local file.
+ * The {@code Storage} class ensures persistence of task data by
+ * writing a {@link TaskList} to a save file and reloading it when the program starts.
+ */
 public class Storage {
 
     private final File saveFile;
@@ -23,6 +28,10 @@ public class Storage {
         createIfNotExists();
     }
 
+    /**
+     * Creates the save file and its parent directories if they do not already exist.
+     * Prints an error message if the file cannot be created.
+     */
     private void createIfNotExists() {
         try {
             File parentDir = saveFile.getParentFile();
@@ -37,6 +46,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves all tasks in the given {@link TaskList} to the save file.
+     * Each task is written in its data format representation.
+     *
+     * @param list the {@code TaskList} to save
+     */
     public void save(TaskList list) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
             for (Task task : list.getList()) {
@@ -48,30 +63,32 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the save file into the given {@link TaskList}.
+     * The file is read line by line and each line is parsed into a
+     * {@link ToDo}, {@link Deadline}, or {@link Event} task based on its type.
+     * Marks the task as done if specified in the file.
+     *
+     * @param list the {@code TaskList} to populate with tasks from the file
+     */
     public void load(TaskList list) {
         try (BufferedReader reader = new BufferedReader(new FileReader(saveFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) continue;
-
                 String[] parts = line.split(" \\| ");
                 String type = parts[0];
                 boolean isDone = parts[1].equals("1");
                 Task task = null;
-
                 switch (type) {
                     case "T":
                         task = new ToDo(parts[2]);
                         break;
-
                     case "D":
-                        // parts[3] contains the deadline string
                         task = new Deadline(parts[2], DateTimeManager.parse(parts[3]));
                         break;
-
                     case "E":
-                        // parts[3] contains the event duration: "from-to"
                         String[] duration = parts[3].split(" - ", 2); // split only once
                         String fromStr = duration[0].replace("from ", "").trim();
                         String toStr = duration[1].replace("to ", "").trim();

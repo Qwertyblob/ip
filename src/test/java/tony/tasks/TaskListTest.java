@@ -26,15 +26,15 @@ public class TaskListTest {
         taskList.addTask(task);
 
         // Initially undone
-        assertFalse(taskList.getTask(1).doneStatus());
+        assertFalse(taskList.getTask(1).isDone());
 
         // Mark done
         taskList.markDone(1);
-        assertTrue(taskList.getTask(1).doneStatus());
+        assertTrue(taskList.getTask(1).isDone());
 
         // Mark undone again
         taskList.markUndone(1);
-        assertFalse(taskList.getTask(1).doneStatus());
+        assertFalse(taskList.getTask(1).isDone());
     }
 
     @Test
