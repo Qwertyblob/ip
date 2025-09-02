@@ -1,14 +1,14 @@
 package tony.commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Deadline;
 import tony.tasks.TaskList;
 import tony.ui.UI;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command to create a {@link Deadline} task.
@@ -50,8 +50,8 @@ public class DeadlineCommand extends Command {
             storage.save(tasks);
             ui.showAddTask(tasks, task);
         } catch (DateTimeParseException e) {
-            throw new TonyException("Let me spell it out for you:\n" +
-                    "Use: dd-MM-yyyy HH:mma (e.g. 12-09-2025 6:00PM).");
+            throw new TonyException("Let me spell it out for you:\n"
+                    + "Use: dd-MM-yyyy HH:mma (e.g. 12-09-2025 6:00PM).");
         }
     }
 }

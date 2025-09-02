@@ -1,18 +1,18 @@
 package tony.storage;
 
-import tony.parsers.DateTimeManager;
-import tony.tasks.TaskList;
-import tony.tasks.Deadline;
-import tony.tasks.Event;
-import tony.tasks.Task;
-import tony.tasks.ToDo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import tony.parsers.DateTimeManager;
+import tony.tasks.Deadline;
+import tony.tasks.Event;
+import tony.tasks.Task;
+import tony.tasks.TaskList;
+import tony.tasks.ToDo;
 
 /**
  * Handles saving and loading of tasks to and from a local file.
@@ -76,7 +76,9 @@ public class Storage {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
                 String[] parts = line.split(" \\| ");
                 String type = parts[0];
                 boolean isDone = parts[1].equals("1");
@@ -94,11 +96,13 @@ public class Storage {
                     String toStr = duration[1].replace("to ", "").trim();
                     task = new Event(parts[2], DateTimeManager.parse(fromStr), DateTimeManager.parse(toStr));
                     break;
+                default:
+                    throw new IOException("Error: Cannot load file.");
                 }
-                if (task != null) {
-                    if (isDone) task.markDone();
-                    list.addTask(task);
+                if (isDone) {
+                    task.markDone();
                 }
+                list.addTask(task);
             }
         } catch (IOException e) {
             System.out.println("Error loading save file: " + e.getMessage());

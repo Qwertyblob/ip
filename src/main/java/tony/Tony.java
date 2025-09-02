@@ -8,9 +8,9 @@ import tony.tasks.TaskList;
 import tony.ui.UI;
 
 public class Tony {
-    Storage storage;
-    TaskList tasks;
-    UI ui;
+    private Storage storage;
+    private TaskList tasks;
+    private UI ui;
 
     public Tony() {
         this.storage = new Storage("./data/tasks.txt");

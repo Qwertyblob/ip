@@ -1,5 +1,8 @@
 package tony.commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import tony.exceptions.EventException;
 import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
@@ -7,9 +10,6 @@ import tony.storage.Storage;
 import tony.tasks.Event;
 import tony.tasks.TaskList;
 import tony.ui.UI;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command to create a {@link Event} task.

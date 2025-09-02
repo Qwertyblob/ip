@@ -1,5 +1,8 @@
 package tony.commands;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Deadline;
@@ -7,9 +10,6 @@ import tony.tasks.Event;
 import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * Represents a command to show list of tasks from the task list
@@ -48,7 +48,8 @@ public class ShowTasksOnDateCommand extends Command {
                 LocalDateTime to = ((Event) task).getTo();
                 if (!from.isAfter(targetDate) && !to.isBefore(targetDate)) {
                     isFound = true;
-                    currTasks.add(task);                }
+                    currTasks.add(task);
+                }
             }
         }
         ui.showTasksOnDate(currTasks, isFound);

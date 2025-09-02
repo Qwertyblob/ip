@@ -1,13 +1,11 @@
 package tony.commands;
 
-import tony.commands.Command;
+import java.util.ArrayList;
+
 import tony.storage.Storage;
 import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FindCommand extends Command {
 
