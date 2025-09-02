@@ -1,5 +1,7 @@
 package tony.ui;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import tony.Tony;
 
 /**
@@ -50,5 +53,10 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getTonyDialog(response, tonyImage)
         );
         userInput.clear();
+        if (input.equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> Platform.exit()); // Close after 3 seconds
+            delay.play();
+        }
     }
 }
