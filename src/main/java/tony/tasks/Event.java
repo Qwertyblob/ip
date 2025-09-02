@@ -1,8 +1,8 @@
 package tony.tasks;
 
-import tony.parsers.DateTimeManager;
-
 import java.time.LocalDateTime;
+
+import tony.parsers.DateTimeManager;
 
 /**
  * Represents an event task with a description, a start date/time and an end date/time.
