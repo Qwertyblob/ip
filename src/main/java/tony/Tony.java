@@ -14,7 +14,7 @@ public class Tony {
 
     public Tony() {
         this.storage = new Storage("./data/tasks.txt");
-        this.tasks = new TaskList();
+        this.tasks = this.storage.load();
         this.ui = new UI();
     }
 
