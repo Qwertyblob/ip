@@ -1,15 +1,6 @@
 package tony.parsers;
 
-import tony.commands.Command;
-import tony.commands.DeadlineCommand;
-import tony.commands.DeleteCommand;
-import tony.commands.EventCommand;
-import tony.commands.ExitCommand;
-import tony.commands.ListCommand;
-import tony.commands.MarkCommand;
-import tony.commands.ShowTasksOnDateCommand;
-import tony.commands.ToDoCommand;
-import tony.commands.UnmarkCommand;
+import tony.commands.*;
 import tony.exceptions.InvalidCommandException;
 import tony.exceptions.TonyException;
 
@@ -46,6 +37,8 @@ public class Parser {
             return new UnmarkCommand(args);
         case "show":
             return new ShowTasksOnDateCommand(args);
+        case "find":
+            return new FindCommand(args);
         case "bye":
             return new ExitCommand();
         default:
