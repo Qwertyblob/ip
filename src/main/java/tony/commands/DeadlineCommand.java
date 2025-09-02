@@ -42,13 +42,13 @@ public class DeadlineCommand extends Command {
      * @throws TonyException If the deadline cannot be parsed into a valid date-time format.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+    public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
             LocalDateTime deadlineDateTime = DateTimeManager.parse(this.by);
             Deadline task = new Deadline(this.description, deadlineDateTime);
             tasks.addTask(task);
             storage.save(tasks);
-            ui.showAddTask(tasks, task);
+            return ui.showAddTask(tasks, task);
         } catch (DateTimeParseException e) {
             throw new TonyException("Let me spell it out for you:\n"
                     + "Use: dd-MM-yyyy HH:mma (e.g. 12-09-2025 6:00PM).");

@@ -35,17 +35,17 @@ public class DeleteCommand extends Command {
      * @throws TonyException If the index is invalid (not within list bounds).
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+    public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
             if (this.index > tasks.getSize() || this.index < 1) {
                 throw new InvalidIndexException("No offence, but do you know how to count?");
             } else {
                 Task task = tasks.deleteTask(index);
                 storage.save(tasks);
-                ui.showDelete(task);
+                return ui.showDelete(task);
             }
         } catch (TonyException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
     }
 }

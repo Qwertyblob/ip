@@ -35,7 +35,7 @@ public class UnmarkCommand extends Command {
      * @throws TonyException If the index is invalid (not within list bounds).
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
+    public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
             if (this.index > tasks.getSize() || this.index < 1) {
                 throw new InvalidIndexException("No offence, but do you know how to count?");
@@ -43,10 +43,10 @@ public class UnmarkCommand extends Command {
                 Task task = tasks.getTask(index);
                 tasks.markUndone(index);
                 storage.save(tasks);
-                ui.showUnmark(task);
+                return ui.showUnmark(task);
             }
         } catch (TonyException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
     }
 }
