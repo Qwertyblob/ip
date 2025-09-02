@@ -18,7 +18,7 @@ public abstract class Command {
      * @param storage The {@link Storage} instance for saving tasks to file.
      * @throws TonyException If the command is invalid.
      */
-    public abstract void execute(TaskList tasks, UI ui, Storage storage) throws TonyException;
+    public abstract String execute(TaskList tasks, UI ui, Storage storage) throws TonyException;
 
     public boolean isExit() {
         return false;

@@ -9,8 +9,8 @@ import tony.ui.UI;
  */
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return ui.exit();
     }
 
     @Override

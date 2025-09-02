@@ -29,7 +29,7 @@ public class StorageTest {
         list.addTask(new ToDo("Buy milk"));
         storage.save(list);
         TaskList loadedList = new TaskList();
-        storage.load(loadedList);
+        storage.load();
         assertEquals(1, loadedList.getSize());
         assertEquals("[T][ ] Buy milk", loadedList.getTask(1).toString());
         assertFalse(loadedList.getTask(1).isDone());
@@ -44,7 +44,7 @@ public class StorageTest {
         list.addTask(deadline);
         storage.save(list);
         TaskList loadedList = new TaskList();
-        storage.load(loadedList);
+        storage.load();
         assertEquals(1, loadedList.getSize());
         Task loaded = loadedList.getTask(1);
         assertTrue(loaded.isDone());
@@ -61,7 +61,7 @@ public class StorageTest {
         list.addTask(event);
         storage.save(list);
         TaskList loadedList = new TaskList();
-        storage.load(loadedList);
+        storage.load();
         assertEquals(1, loadedList.getSize());
         Task loaded = loadedList.getTask(1);
         assertInstanceOf(Event.class, loaded);

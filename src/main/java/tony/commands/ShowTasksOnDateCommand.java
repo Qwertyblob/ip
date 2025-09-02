@@ -33,7 +33,7 @@ public class ShowTasksOnDateCommand extends Command {
      * @param storage The {@link Storage} instance for saving tasks to file.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
+    public String execute(TaskList tasks, UI ui, Storage storage) {
         ArrayList<Task> currTasks = new ArrayList<>();
         boolean isFound = false;
         for (Task task : tasks.getList()) {
@@ -52,6 +52,6 @@ public class ShowTasksOnDateCommand extends Command {
                 }
             }
         }
-        ui.showTasksOnDate(currTasks, isFound);
+        return ui.showTasksOnDate(currTasks, isFound);
     }
 }

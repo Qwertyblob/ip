@@ -69,9 +69,9 @@ public class Storage {
      * {@link ToDo}, {@link Deadline}, or {@link Event} task based on its type.
      * Marks the task as done if specified in the file.
      *
-     * @param list the {@code TaskList} to populate with tasks from the file
      */
-    public void load(TaskList list) {
+    public TaskList load() {
+        TaskList list = new TaskList();
         try (BufferedReader reader = new BufferedReader(new FileReader(saveFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -104,8 +104,10 @@ public class Storage {
                 }
                 list.addTask(task);
             }
+            return list;
         } catch (IOException e) {
             System.out.println("Error loading save file: " + e.getMessage());
         }
+        return list;
     }
 }

@@ -16,13 +16,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
+    public String execute(TaskList tasks, UI ui, Storage storage) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks.getList()) {
             if (task.toString().toLowerCase().contains(keyword.toLowerCase())) {
                 matchingTasks.add(task);
             }
         }
-        ui.showFound(matchingTasks, keyword);
+        return ui.showFound(matchingTasks, keyword);
     }
 }
