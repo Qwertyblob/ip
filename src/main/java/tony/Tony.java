@@ -8,7 +8,7 @@ import tony.tasks.TaskList;
 import tony.ui.UI;
 
 public class Tony {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
     private UI ui;
 
