@@ -37,8 +37,8 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
-            assert tasks != null : "TaskList should not be null";
-            assert ui != null : "UI should not be null";
+            assert tasks != null : "TaskList cannot be null";
+            assert ui != null : "UI cannot be null";
             if (this.index > tasks.getSize() || this.index < 1) {
                 throw new InvalidIndexException("No offence, but do you know how to count?");
             } else {

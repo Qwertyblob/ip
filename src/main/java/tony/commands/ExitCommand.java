@@ -10,8 +10,8 @@ import tony.ui.UI;
 public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) {
-        assert tasks != null : "TaskList should not be null";
-        assert ui != null : "UI should not be null";
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "UI cannot be null";
         return ui.exit();
     }
 

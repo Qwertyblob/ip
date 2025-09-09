@@ -17,8 +17,8 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) {
-        assert tasks != null : "TaskList should not be null";
-        assert ui != null : "UI should not be null";
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "UI cannot be null";
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks.getList()) {
             if (task.toString().toLowerCase().contains(keyword.toLowerCase())) {

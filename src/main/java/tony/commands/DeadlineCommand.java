@@ -44,8 +44,8 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
-            assert tasks != null : "TaskList should not be null";
-            assert ui != null : "UI should not be null";
+            assert tasks != null : "TaskList cannot be null";
+            assert ui != null : "UI cannot be null";
             LocalDateTime deadlineDateTime = DateTimeManager.parse(this.by);
             Deadline task = new Deadline(this.description, deadlineDateTime);
             tasks.addTask(task);

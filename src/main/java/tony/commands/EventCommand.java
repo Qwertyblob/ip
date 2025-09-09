@@ -48,8 +48,8 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         try {
-            assert tasks != null : "TaskList should not be null";
-            assert ui != null : "UI should not be null";
+            assert tasks != null : "TaskList cannot be null";
+            assert ui != null : "UI cannot be null";
             LocalDateTime fromDateTime = DateTimeManager.parse(this.from);
             LocalDateTime toDateTime = DateTimeManager.parse(this.to);
             Event task = new Event(this.description, fromDateTime, toDateTime);
