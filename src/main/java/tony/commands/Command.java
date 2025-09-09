@@ -19,8 +19,4 @@ public abstract class Command {
      * @throws TonyException If the command is invalid.
      */
     public abstract String execute(TaskList tasks, UI ui, Storage storage) throws TonyException;
-
-    public boolean isExit() {
-        return false;
-    }
 }
