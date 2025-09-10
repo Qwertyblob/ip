@@ -18,6 +18,10 @@ public class Tony {
         this.ui = new UI();
     }
 
+    public String getGreeting() {
+        return this.ui.greeting();
+    }
+
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);

@@ -38,6 +38,10 @@ public class MainWindow extends AnchorPane {
     /** Injects the Tony instance */
     public void setTony(Tony tony) {
         this.tony = tony;
+        String response = tony.getGreeting();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getTonyDialog(response, tonyImage)
+        );
     }
 
     /**
