@@ -8,6 +8,7 @@ import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Event;
+import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
@@ -52,6 +53,16 @@ public class EventCommand extends Command {
             assert ui != null : "UI cannot be null";
             LocalDateTime fromDateTime = DateTimeManager.parse(this.from);
             LocalDateTime toDateTime = DateTimeManager.parse(this.to);
+            for (Task task : tasks.getList()) {
+                if (task instanceof Event) {
+                    Event event = (Event) task;
+                    LocalDateTime eventFrom = event.getFrom();
+                    LocalDateTime eventTo = event.getTo();
+                    if (fromDateTime.isBefore(eventFrom) && toDateTime.isAfter(eventTo)) {
+                        throw new TonyException("Hold up! This event overlaps with an task event:\n  " + event);
+                    }
+                }
+            }
             Event task = new Event(this.description, fromDateTime, toDateTime);
             tasks.addTask(task);
             storage.save(tasks);
