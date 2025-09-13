@@ -23,7 +23,7 @@ public class DeadlineCommand extends Command {
     public DeadlineCommand(String args) throws TonyException {
         String[] parts = args.split(" /by ", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty()) {
-            throw new TonyException("JARVIS, show them how it's done.\n\tdeadline <task> /by time.");
+            throw new TonyException("JARVIS, show them how it's done.\n\tdeadline <task> /by <time>");
         }
         this.description = parts[0].trim();
         this.by = parts[1].trim();

@@ -72,7 +72,7 @@ public class UI {
     public String showTasksOnDate(ArrayList<Task> tasks, boolean isFound) {
         StringBuilder s = new StringBuilder();
         if (!isFound) {
-            s.append("You're as busy as a rock");
+            s.append("You're as busy as a rock.");
         } else {
             for (Task task : tasks) {
                 s.append("  ").append(task).append("\n");
