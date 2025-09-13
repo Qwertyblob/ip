@@ -23,6 +23,7 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    private static DialogBox lastTonyDialog = null;
 
     private DialogBox(String text, Image img) {
         try {
@@ -56,6 +57,11 @@ public class DialogBox extends HBox {
     public static DialogBox getTonyDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        if (lastTonyDialog != null) {
+            lastTonyDialog.dialog.getStyleClass().remove("tony-dialog-recent");
+        }
+        db.dialog.getStyleClass().add("tony-dialog-recent");
+        lastTonyDialog = db;
         return db;
     }
 }
