@@ -7,22 +7,22 @@ import tony.storage.Storage;
  */
 public abstract class Task {
     protected String command;
-    private boolean done = false;
+    private boolean isDone = false;
 
     public Task(String command) {
         this.command = command;
     }
 
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void markUndone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     public String toString() {
