@@ -74,8 +74,9 @@ public class UI {
         if (!isFound) {
             s.append("You're as busy as a rock.");
         } else {
-            for (Task task : tasks) {
-                s.append("  ").append(task).append("\n");
+            s.append("Looks like you've got some things on your plate.\n");
+            for (int i = 1; i <= tasks.size(); i++) {
+                s.append("  ").append(i).append(": ").append(tasks.get(i - 1).toString()).append("\n");
             }
         }
         return s.toString();
@@ -88,7 +89,7 @@ public class UI {
         } else {
             s.append("That didn't take long.\n");
             for (int i = 1; i <= tasks.size(); i++) {
-                s.append("\t").append(i).append(": ").append(tasks.get(i - 1).toString()).append("\n");
+                s.append("  ").append(i).append(": ").append(tasks.get(i - 1).toString()).append("\n");
             }
         }
         return s.toString();
