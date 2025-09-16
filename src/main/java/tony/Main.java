@@ -1,4 +1,4 @@
-package tony.ui;
+package tony;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import tony.Tony;
+import tony.ui.MainWindow;
 
 /**
  * A GUI for Tony using FXML.

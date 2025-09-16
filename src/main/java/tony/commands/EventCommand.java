@@ -30,8 +30,8 @@ public class EventCommand extends Command {
      */
     public EventCommand(String args) throws TonyException {
         if (!args.contains("/from") || !args.contains("/to")) {
-            throw new EventException("JARVIS, show them how it's done.\n\tevent <event> " +
-                    "/from <date + time(optional)> /to <date + time(optional)>");
+            throw new EventException("JARVIS, show them how it's done.\n\tevent <event> "
+                    + "/from <date + time(optional)> /to <date + time(optional)>");
         } else {
             String[] parts = args.split("/from", 2);
             String[] fromTo = parts[1].split("/to", 2);
