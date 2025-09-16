@@ -1,6 +1,7 @@
 package tony.ui;
 
 import javafx.application.Application;
+import tony.Main;
 
 /**
  * A launcher class to workaround classpath issues.
