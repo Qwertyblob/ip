@@ -14,6 +14,12 @@ import tony.ui.UI;
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Constructs a new {@link DeleteCommand} by parsing the input arguments
+     *
+     * @param args The raw input string containing the task index.
+     * @throws TonyException If the input does not contain an integer.
+     */
     public DeleteCommand(String args) throws TonyException {
         try {
             this.index = Integer.parseInt(args.trim());
@@ -32,6 +38,7 @@ public class DeleteCommand extends Command {
      * @param tasks The {@link TaskList} from which the task will be deleted.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The {@link Task} that has been deleted as a {@link String}.
      * @throws TonyException If the index is invalid (not within list bounds).
      */
     @Override

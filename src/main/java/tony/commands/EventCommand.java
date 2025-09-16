@@ -7,6 +7,7 @@ import tony.exceptions.EventException;
 import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
+import tony.tasks.Deadline;
 import tony.tasks.Event;
 import tony.tasks.Task;
 import tony.tasks.TaskList;
@@ -22,9 +23,16 @@ public class EventCommand extends Command {
     private final String from;
     private final String to;
 
+    /**
+     * Constructs a new {@link EventCommand} by parsing the input arguments.
+     *
+     * @param args The raw input string containing the task description and start and end dates.
+     * @throws TonyException If the input does not contain both a "/from" and "/to".
+     */
     public EventCommand(String args) throws TonyException {
         if (!args.contains("/from") || !args.contains("/to")) {
-            throw new EventException("JARVIS, show them how it's done.\n\tevent <event> /from <start> /to <end>");
+            throw new EventException("JARVIS, show them how it's done.\n\tevent <event> " +
+                    "/from <date + time(optional)> /to <date + time(optional)>");
         } else {
             String[] parts = args.split("/from", 2);
             String[] fromTo = parts[1].split("/to", 2);
@@ -44,6 +52,7 @@ public class EventCommand extends Command {
      * @param tasks The {@link TaskList} to which the new task will be added.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The {@link Event} task that has been added to the {@link TaskList} as a {@link String}.
      * @throws TonyException If the "from" or "to" time cannot be parsed into a valid date-time format.
      */
     @Override

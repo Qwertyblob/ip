@@ -7,23 +7,30 @@ import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Deadline;
+import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
 /**
  * Represents a command to create a {@link Deadline} task.
  * A deadline task requires both a task description and a deadline time,
- * specified using the format <code>deadline &lt;task&gt; /by &lt;time&gt;</code>.
+ * specified using the format <code>deadline &lt;task&gt; /by &lt;date + time(optional)&gt;</code>.
  */
 public class DeadlineCommand extends Command {
 
     private final String description;
     private final String by;
 
+    /**
+     * Constructs a new {@link DeadlineCommand} by parsing the input arguments.
+     *
+     * @param args The raw input string containing the task description and deadline.
+     * @throws TonyException If the input does not contain both a task description and a deadline.
+     */
     public DeadlineCommand(String args) throws TonyException {
         String[] parts = args.split(" /by ", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty()) {
-            throw new TonyException("JARVIS, show them how it's done.\n\tdeadline <task> /by <time>");
+            throw new TonyException("JARVIS, show them how it's done.\n\tdeadline <task> /by <date + time(optional)>");
         }
         this.description = parts[0].trim();
         this.by = parts[1].trim();
@@ -39,6 +46,7 @@ public class DeadlineCommand extends Command {
      * @param tasks The {@link TaskList} to which the new task will be added.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The {@link Deadline} task that has been added to the {@link TaskList} as a {@link String}.
      * @throws TonyException If the deadline cannot be parsed into a valid date-time format.
      */
     @Override

@@ -24,13 +24,14 @@ public class ShowTasksOnDateCommand extends Command {
     }
 
     /**
-     * Executes the {@code ShowTasksOnDateCommand}.
+     * Executes the {@link ShowTasksOnDateCommand}.
      * Goes through the {@link TaskList} to find tasks that lie on the date specified by the user.
      * Displays tasks that lie on the date specified by the user through the {@link UI}.
      *
      * @param tasks The {@link TaskList} from which the task will be marked.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The tasks found as a {@link String}.
      */
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) {

@@ -15,6 +15,16 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the {@link FindCommand}.
+     * Goes through the {@link TaskList} to find tasks that contain the keyword specified by the user.
+     * Displays tasks that contain the keyword specified by the user through the {@link UI}.
+     *
+     * @param tasks The {@link TaskList} that stores tasks.
+     * @param ui The {@link UI} instance for displaying feedback to the user.
+     * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The tasks found as a {@link String}.
+     */
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) {
         assert tasks != null : "TaskList cannot be null";

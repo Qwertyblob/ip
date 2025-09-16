@@ -1,6 +1,7 @@
 package tony.commands;
 
 import tony.storage.Storage;
+import tony.tasks.Deadline;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
@@ -16,6 +17,7 @@ public class ListCommand extends Command {
      * @param tasks The {@link TaskList} from which the tasks will be shown.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The {@link TaskList} as a {@link String}.
      */
     @Override
     public String execute(TaskList tasks, UI ui, Storage storage) {

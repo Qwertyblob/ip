@@ -14,6 +14,12 @@ import tony.ui.UI;
 public class MarkCommand extends Command {
     private final int index;
 
+    /**
+     * Constructs a new {@link MarkCommand} by parsing the input arguments
+     *
+     * @param args The raw input string containing the task index.
+     * @throws TonyException If the input does not contain an integer.
+     */
     public MarkCommand(String args) throws TonyException {
         try {
             this.index = Integer.parseInt(args.trim());
@@ -32,6 +38,7 @@ public class MarkCommand extends Command {
      * @param tasks The {@link TaskList} from which the task will be marked.
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
+     * @return The {@link Task} that has been marked as a {@link String}.
      * @throws TonyException If the index is invalid (not within list bounds).
      */
     @Override
