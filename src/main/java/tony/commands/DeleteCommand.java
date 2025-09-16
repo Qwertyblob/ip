@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
     private final int index;
 
     /**
-     * Constructs a new {@link DeleteCommand} by parsing the input arguments
+     * Constructs a new {@link DeleteCommand} by parsing the input arguments.
      *
      * @param args The raw input string containing the task index.
      * @throws TonyException If the input does not contain an integer.
