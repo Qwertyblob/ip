@@ -1,7 +1,6 @@
 package tony.commands;
 
 import tony.storage.Storage;
-import tony.tasks.Deadline;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 

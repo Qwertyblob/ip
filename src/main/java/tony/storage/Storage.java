@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import tony.commands.DeadlineCommand;
 import tony.parsers.DateTimeManager;
 import tony.tasks.Deadline;
 import tony.tasks.Event;

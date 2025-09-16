@@ -1,8 +1,10 @@
 package tony.commands;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
 import tony.tasks.Deadline;
@@ -32,29 +34,34 @@ public class ShowTasksOnDateCommand extends Command {
      * @param ui The {@link UI} instance for displaying feedback to the user.
      * @param storage The {@link Storage} instance for saving tasks to file.
      * @return The tasks found as a {@link String}.
+     * @throws TonyException If the input date cannot be parsed into a valid date-time format.
      */
     @Override
-    public String execute(TaskList tasks, UI ui, Storage storage) {
+    public String execute(TaskList tasks, UI ui, Storage storage) throws TonyException {
         assert tasks != null : "TaskList cannot be null";
         assert ui != null : "UI cannot be null";
-        ArrayList<Task> currTasks = new ArrayList<>();
-        boolean isFound = false;
-        for (Task task : tasks.getList()) {
-            if (task instanceof Deadline) {
-                LocalDateTime dt = ((Deadline) task).getDeadline();
-                if (dt.equals(targetDate)) {
-                    isFound = true;
-                    currTasks.add(task);
-                }
-            } else if (task instanceof Event) {
-                LocalDateTime from = ((Event) task).getFrom();
-                LocalDateTime to = ((Event) task).getTo();
-                if (!from.isAfter(targetDate) && !to.isBefore(targetDate)) {
-                    isFound = true;
-                    currTasks.add(task);
+        try {
+            ArrayList<Task> currTasks = new ArrayList<>();
+            boolean isFound = false;
+            for (Task task : tasks.getList()) {
+                if (task instanceof Deadline) {
+                    LocalDateTime dt = ((Deadline) task).getDeadline();
+                    if (dt.equals(targetDate)) {
+                        isFound = true;
+                        currTasks.add(task);
+                    }
+                } else if (task instanceof Event) {
+                    LocalDateTime from = ((Event) task).getFrom();
+                    LocalDateTime to = ((Event) task).getTo();
+                    if (!from.isAfter(targetDate) && !to.isBefore(targetDate)) {
+                        isFound = true;
+                        currTasks.add(task);
+                    }
                 }
             }
+            return ui.showTasksOnDate(currTasks, isFound);
+        } catch (DateTimeParseException e) {
+            throw new TonyException("Let me spell it out for you: dd-MM-yyyy (e.g. 12-09-2025).");
         }
-        return ui.showTasksOnDate(currTasks, isFound);
     }
 }

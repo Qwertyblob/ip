@@ -7,7 +7,6 @@ import tony.exceptions.EventException;
 import tony.exceptions.TonyException;
 import tony.parsers.DateTimeManager;
 import tony.storage.Storage;
-import tony.tasks.Deadline;
 import tony.tasks.Event;
 import tony.tasks.Task;
 import tony.tasks.TaskList;

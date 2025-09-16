@@ -3,7 +3,6 @@ package tony.commands;
 import tony.exceptions.EmptyTaskException;
 import tony.exceptions.TonyException;
 import tony.storage.Storage;
-import tony.tasks.Deadline;
 import tony.tasks.TaskList;
 import tony.tasks.ToDo;
 import tony.ui.UI;

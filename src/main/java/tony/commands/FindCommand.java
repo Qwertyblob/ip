@@ -2,6 +2,8 @@ package tony.commands;
 
 import java.util.ArrayList;
 
+import tony.exceptions.EmptyTaskException;
+import tony.exceptions.TonyException;
 import tony.storage.Storage;
 import tony.tasks.Task;
 import tony.tasks.TaskList;
@@ -11,8 +13,12 @@ public class FindCommand extends Command {
 
     private final String keyword;
 
-    public FindCommand(String keyword) {
-        this.keyword = keyword;
+    public FindCommand(String keyword) throws TonyException {
+        if (keyword.isEmpty()) {
+            throw new EmptyTaskException("Hey, give me something to work with.");
+        } else {
+            this.keyword = keyword;
+        }
     }
 
     /**
