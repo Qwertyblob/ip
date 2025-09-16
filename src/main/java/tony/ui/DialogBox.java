@@ -19,11 +19,11 @@ import javafx.scene.layout.HBox;
  * and a label containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static DialogBox lastTonyDialog = null;
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
-    private static DialogBox lastTonyDialog = null;
 
     private DialogBox(String text, Image img) {
         try {
