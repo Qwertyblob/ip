@@ -6,8 +6,7 @@ Tony chatbot is a virtual assistant that helps you to manage your tasks.
 
 ## Features
 
-> [!NOTE]
-> Notes about command format:
+> **Notes about command format:**
 > * All commands should be in lowercase
 > * Commands can only be used once per input
 
