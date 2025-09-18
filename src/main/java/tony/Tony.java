@@ -7,11 +7,17 @@ import tony.storage.Storage;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
+/**
+ * Represents the Tony chatbot which contains the {@link Storage} file, {@link TaskList} and {@link UI}.
+ */
 public class Tony {
     private final Storage storage;
-    private TaskList tasks;
-    private UI ui;
+    private final TaskList tasks;
+    private final UI ui;
 
+    /**
+     * Constructs the Tony chatbot.
+     */
     public Tony() {
         this.storage = new Storage("./data/tasks.txt");
         this.tasks = this.storage.load();

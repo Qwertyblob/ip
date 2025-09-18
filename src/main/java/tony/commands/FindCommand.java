@@ -9,10 +9,20 @@ import tony.tasks.Task;
 import tony.tasks.TaskList;
 import tony.ui.UI;
 
+/**
+ * Represents a command to show list of tasks from the task list
+ * that contains the keyword specified by the user.
+ */
 public class FindCommand extends Command {
 
     private final String keyword;
 
+    /**
+     * Constructs a new {@link ShowTasksOnDateCommand} by parsing the input date.
+     *
+     * @param keyword The raw input string of the keyword to find tasks that contain it.
+     * @throws TonyException If the input is empty.
+     */
     public FindCommand(String keyword) throws TonyException {
         if (keyword.isEmpty()) {
             throw new EmptyTaskException("Hey, give me something to work with.");
